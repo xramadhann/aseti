@@ -13,7 +13,7 @@
   --bg: #f7f6f3;
   --surface: #ffffff;
   --surface2: #efede8;
-  --border: rgba(0,0,0,0.09);
+  --border: rgba(0,0,0,0.08);
   --text: #111110;
   --text2: #6b6860;
   --text3: #b0ada8;
@@ -42,14 +42,13 @@ body {
 nav {
   position: sticky; top: 0; z-index: 50;
   display: flex; align-items: center; gap: 16px;
-  padding: 0 40px; height: 64px;
-  background: rgba(247,246,243,0.92);
-  backdrop-filter: blur(24px) saturate(1.2);
+  padding: 0 32px; height: 60px;
+  background: rgba(247,246,243,0.94);
+  backdrop-filter: blur(24px) saturate(1.3);
   border-bottom: 1px solid var(--border);
 }
 .back-btn {
-  display: inline-flex; align-items: center; gap: 8px;
-  font-family: 'DM Sans', sans-serif;
+  display: inline-flex; align-items: center; gap: 7px;
   font-size: 13px; color: var(--text2);
   text-decoration: none; background: none; border: none;
   cursor: pointer; padding: 6px 0;
@@ -60,8 +59,7 @@ nav {
 .back-btn:hover svg { transform: translateX(-3px); }
 .logo {
   font-family: 'DM Serif Display', serif;
-  font-size: 20px; color: var(--text2);
-  letter-spacing: -0.3px;
+  font-size: 18px; color: var(--text2); letter-spacing: -0.3px;
 }
 .logo em { font-style: italic; }
 .nav-spacer { flex: 1; }
@@ -71,155 +69,155 @@ nav {
   background: var(--surface2);
   border: 1px solid var(--border);
   border-radius: 20px;
-  letter-spacing: 0.8px;
-  font-weight: 500;
+  letter-spacing: 0.8px; font-weight: 500;
 }
 
-/* ── HERO ── */
-.hero-wrap {
+/* ── MAIN LAYOUT ── */
+.page {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: 40px 32px 80px;
+}
+
+/* ── HERO SPLIT: image left, info right ── */
+.hero-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  margin-bottom: 36px;
+  align-items: start;
+}
+
+/* ── IMAGE BOX 1:1 ── */
+.img-box {
   position: relative;
   width: 100%;
-  aspect-ratio: 21/9;
-  max-height: 520px;
+  aspect-ratio: 1 / 1;
+  border-radius: 20px;
   overflow: hidden;
   background: var(--surface2);
+  border: 1px solid var(--border);
   display: flex; align-items: center; justify-content: center;
-  font-size: 100px;
+  font-size: 80px;
 }
-.hero-wrap img {
-  width: 100%; height: 100%;
-  object-fit: cover;
+.img-box img {
+  width: 100%; height: 100%; object-fit: cover;
   transition: transform .8s ease;
 }
-.hero-wrap:hover img { transform: scale(1.03); }
-
-.hero-gradient {
-  position: absolute; inset: 0;
-  background: linear-gradient(
-    to top,
-    rgba(17,17,16,0.65) 0%,
-    rgba(17,17,16,0.2) 40%,
-    transparent 70%
-  );
-}
-
-.hero-content {
-  position: absolute; bottom: 0; left: 0; right: 0;
-  padding: 40px 56px 44px;
-}
-
-.hero-no {
-  font-size: 11px; color: rgba(255,255,255,0.6);
-  letter-spacing: 1.5px; font-weight: 500;
-  text-transform: uppercase; margin-bottom: 8px;
-}
-
-.hero-title {
-  font-family: 'DM Serif Display', serif;
-  font-size: clamp(36px, 5vw, 64px);
-  line-height: 1.05;
-  letter-spacing: -1.5px;
-  color: #ffffff;
-  margin-bottom: 14px;
-  text-shadow: 0 2px 20px rgba(0,0,0,0.3);
-}
-.hero-title em { font-style: italic; opacity: 0.8; }
-
-.hero-row {
-  display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
-}
-
-.status-pill {
-  display: inline-flex; align-items: center; gap: 6px;
-  padding: 6px 14px; border-radius: 30px;
-  font-size: 12px; font-weight: 500;
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.25);
-}
-.status-pill::before {
-  content: ''; width: 6px; height: 6px; border-radius: 50%;
-}
-.s-aktif { background: rgba(220,244,232,0.85); color: var(--green); }
-.s-aktif::before { background: var(--green); animation: pulse 2s infinite; }
-.s-maintenance { background: rgba(254,241,212,0.85); color: var(--amber); }
-.s-maintenance::before { background: var(--amber); }
-.s-retired { background: rgba(253,232,231,0.85); color: var(--red); }
-.s-retired::before { background: var(--red); }
-
-@keyframes pulse {
-  0%, 100% { opacity: 1; } 50% { opacity: 0.35; }
-}
-
-.hero-tag {
+.img-box:hover img { transform: scale(1.04); }
+.img-box .img-status {
+  position: absolute; top: 14px; left: 14px;
+  display: inline-flex; align-items: center; gap: 5px;
   padding: 5px 12px; border-radius: 30px;
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.2);
-  font-size: 11px; color: rgba(255,255,255,0.85);
-  font-weight: 500;
+  font-size: 11px; font-weight: 500;
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.img-box .img-status::before {
+  content: ''; width: 5px; height: 5px; border-radius: 50%;
 }
 
-/* ── LAYOUT ── */
-.page { max-width: 900px; margin: 0 auto; padding: 48px 40px 80px; }
+/* ── RIGHT PANEL ── */
+.right-panel {
+  display: flex; flex-direction: column; gap: 0;
+  padding-top: 4px;
+}
 
-/* ── INFO SECTION ── */
-.section-label {
+.asset-no {
   font-size: 11px; color: var(--text3);
-  text-transform: uppercase; letter-spacing: 1.2px;
-  font-weight: 600; margin-bottom: 16px;
+  letter-spacing: 1.4px; font-weight: 600;
+  text-transform: uppercase; margin-bottom: 10px;
 }
 
-.info-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 12px; margin-bottom: 32px;
+.asset-title {
+  font-family: 'DM Serif Display', serif;
+  font-size: clamp(28px, 3.5vw, 44px);
+  line-height: 1.08;
+  letter-spacing: -1.2px;
+  color: var(--text);
+  margin-bottom: 16px;
+}
+.asset-title em { font-style: italic; color: var(--text2); }
+
+.tag-row {
+  display: flex; flex-wrap: wrap; gap: 6px;
+  margin-bottom: 28px;
+}
+.tag-pill {
+  padding: 5px 13px; border-radius: 30px;
+  font-size: 11px; font-weight: 500;
+  background: var(--surface2);
+  border: 1px solid var(--border);
+  color: var(--text2);
+}
+
+/* ── INFO CARDS ── */
+.info-stack {
+  display: flex; flex-direction: column; gap: 10px;
+}
+.info-row {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px;
 }
 .info-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px; padding: 20px 22px;
+  border-radius: 14px;
+  padding: 16px 18px;
   transition: background .15s;
 }
 .info-card:hover { background: var(--surface2); }
-.info-card.full { grid-column: 1/-1; }
+.info-card.full { grid-column: 1 / -1; }
 .info-key {
-  font-size: 11px; color: var(--text3);
-  text-transform: uppercase; letter-spacing: 0.8px;
-  font-weight: 500; margin-bottom: 6px;
+  font-size: 10px; color: var(--text3);
+  text-transform: uppercase; letter-spacing: 0.9px;
+  font-weight: 600; margin-bottom: 5px;
 }
 .info-val {
-  font-size: 15px; font-weight: 500; color: var(--text);
+  font-size: 14px; font-weight: 500; color: var(--text);
   line-height: 1.4;
 }
 .info-val.light { font-weight: 400; color: var(--text2); }
 
-/* ── STATUS CARD ── */
-.status-inline {
+/* ── STATUS BADGE ── */
+.s-aktif { background: rgba(220,244,232,0.9); color: var(--green); }
+.s-aktif::before, .s-aktif.dot::before { background: var(--green); animation: pulse 2s infinite; }
+.s-maintenance { background: rgba(254,241,212,0.9); color: var(--amber); }
+.s-maintenance::before { background: var(--amber); }
+.s-retired { background: rgba(253,232,231,0.9); color: var(--red); }
+.s-retired::before { background: var(--red); }
+
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+
+.status-badge {
   display: inline-flex; align-items: center; gap: 6px;
   padding: 6px 14px; border-radius: 30px;
   font-size: 12px; font-weight: 500;
 }
-.status-inline::before {
-  content: ''; width: 6px; height: 6px; border-radius: 50%;
+.status-badge::before {
+  content:''; width:6px; height:6px; border-radius:50%;
 }
 
 /* ── DESCRIPTION ── */
 .desc-card {
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: 14px;
-  padding: 28px 28px 32px;
+  border-radius: 16px;
+  padding: 26px 28px 30px;
   margin-bottom: 32px;
 }
-.desc-divider { height: 1px; background: var(--border); margin: 12px 0 20px; }
+.section-label {
+  font-size: 10px; color: var(--text3);
+  text-transform: uppercase; letter-spacing: 1.2px;
+  font-weight: 600; margin-bottom: 14px;
+}
+.desc-divider { height: 1px; background: var(--border); margin-bottom: 18px; }
 .desc-text {
   font-size: 14px; color: var(--text2);
   line-height: 1.9; font-weight: 300;
 }
 
 /* ── BACK FOOTER ── */
-.back-footer {
-  text-align: center; padding-top: 8px;
-}
+.back-footer { text-align: center; padding-top: 4px; }
 .back-footer a {
   font-size: 13px; color: var(--text2);
   text-decoration: none;
@@ -228,17 +226,10 @@ nav {
 }
 .back-footer a:hover { color: var(--text); }
 
-/* ── HERO EMOJI FALLBACK ── */
-.emoji-hero {
-  font-size: 100px; display: flex;
-  align-items: center; justify-content: center;
-  width: 100%; height: 100%;
-  background: var(--surface2);
-}
-
 /* ── NOT FOUND ── */
 .not-found {
-  max-width: 480px; margin: 80px auto; text-align: center; padding: 0 40px;
+  max-width: 480px; margin: 80px auto;
+  text-align: center; padding: 0 40px;
 }
 .nf-icon { font-size: 60px; margin-bottom: 20px; }
 .not-found h2 {
@@ -250,19 +241,19 @@ nav {
   display: inline-flex; align-items: center; gap: 10px;
   padding: 12px 28px; background: var(--accent);
   color: var(--bg); border-radius: 12px;
-  font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500;
+  font-size: 13px; font-weight: 500;
   text-decoration: none; transition: opacity .15s;
 }
-.btn-home:hover { opacity: 0.85; }
+.btn-home:hover { opacity: .85; }
 
-@media (max-width: 640px) {
+/* ── MOBILE ── */
+@media (max-width: 700px) {
   nav { padding: 0 16px; }
-  .hero-content { padding: 24px 20px 28px; }
-  .hero-title { font-size: 28px; }
-  .page { padding: 28px 16px 60px; }
-  .info-grid { grid-template-columns: 1fr; }
-  .info-card.full { grid-column: 1; }
-  .hero-wrap { aspect-ratio: 16/9; }
+  .page { padding: 24px 16px 60px; }
+  .hero-split { grid-template-columns: 1fr; gap: 20px; }
+  .img-box { max-width: 100%; }
+  .info-row { grid-template-columns: 1fr; }
+  .asset-title { font-size: 30px; }
 }
 </style>
 </head>
@@ -295,80 +286,76 @@ function formatDate(d) {
   catch { return d; }
 }
 
-function heroHtml(asset) {
-  if (asset.img) {
-    return `
-      <div class="hero-wrap">
-        <img src="${asset.img}" alt="${asset.name}" onerror="this.style.display='none';this.parentElement.querySelector('.emoji-hero').style.display='flex'">
-        <div class="emoji-hero" style="display:none;position:absolute;inset:0"></div>
-        <div class="hero-gradient"></div>
-        <div class="hero-content">
-          <div class="hero-no">${asset.no}</div>
-          <h1 class="hero-title">${asset.name}</h1>
-          <div class="hero-row">
-            <span class="status-pill ${statusClass(asset.status)}">${asset.status}</span>
-            ${(asset.tags||[]).map(t=>`<span class="hero-tag">${t}</span>`).join('')}
-          </div>
-        </div>
-      </div>
-    `;
-  }
+function emojiFor(name) {
   const map = { laptop:'💻', printer:'🖨', ac:'❄️', proyektor:'📽', iphone:'📱', meja:'🪑', monitor:'🖥', kamera:'📷' };
-  const n = asset.name.toLowerCase();
-  let emoji = '📦';
-  for (const [k,v] of Object.entries(map)) if (n.includes(k)) { emoji=v; break; }
-
-  return `
-    <div class="hero-wrap" style="background:#efede8;">
-      <div style="font-size:120px;z-index:0;">${emoji}</div>
-      <div class="hero-gradient"></div>
-      <div class="hero-content">
-        <div class="hero-no">${asset.no}</div>
-        <h1 class="hero-title">${asset.name}</h1>
-        <div class="hero-row">
-          <span class="status-pill ${statusClass(asset.status)}">${asset.status}</span>
-          ${(asset.tags||[]).map(t=>`<span class="hero-tag">${t}</span>`).join('')}
-        </div>
-      </div>
-    </div>
-  `;
+  const n = name.toLowerCase();
+  for (const [k,v] of Object.entries(map)) if (n.includes(k)) return v;
+  return '📦';
 }
 
 function renderDetail(asset) {
   document.title = `${asset.name} · ASIT Management`;
   document.getElementById('nav-no').textContent = asset.no;
 
-  document.getElementById('main-content').innerHTML = `
-    ${heroHtml(asset)}
+  const sc = statusClass(asset.status);
+  const imgHtml = asset.img
+    ? `<img src="${asset.img}" alt="${asset.name}" onerror="this.style.display='none'">`
+    : emojiFor(asset.name);
 
+  document.getElementById('main-content').innerHTML = `
     <div class="page">
 
-      <div class="section-label">Informasi Aset</div>
-      <div class="info-grid">
-        <div class="info-card">
-          <div class="info-key">Pemilik / PIC</div>
-          <div class="info-val">${asset.owner}</div>
+      <div class="hero-split">
+
+        <!-- IMAGE 1:1 -->
+        <div class="img-box">
+          ${imgHtml}
+          <span class="img-status ${sc}">${asset.status}</span>
         </div>
-        <div class="info-card">
-          <div class="info-key">Departemen</div>
-          <div class="info-val light">${asset.dept || '—'}</div>
-        </div>
-        <div class="info-card full">
-          <div class="info-key">Lokasi Fisik</div>
-          <div class="info-val light">${asset.location || '—'}</div>
-        </div>
-        <div class="info-card">
-          <div class="info-key">Tanggal Perolehan</div>
-          <div class="info-val light">${formatDate(asset.date)}</div>
-        </div>
-        <div class="info-card">
-          <div class="info-key">Status Kondisi</div>
-          <div class="info-val">
-            <span class="status-inline ${statusClass(asset.status)}">${asset.status}</span>
+
+        <!-- RIGHT PANEL -->
+        <div class="right-panel">
+          <div class="asset-no">${asset.no}</div>
+          <h1 class="asset-title">${asset.name}</h1>
+
+          ${(asset.tags||[]).length ? `
+            <div class="tag-row">
+              ${asset.tags.map(t=>`<span class="tag-pill">${t}</span>`).join('')}
+            </div>` : ''}
+
+          <div class="info-stack">
+            <div class="info-row">
+              <div class="info-card">
+                <div class="info-key">Pemilik / PIC</div>
+                <div class="info-val">${asset.owner}</div>
+              </div>
+              <div class="info-card">
+                <div class="info-key">Departemen</div>
+                <div class="info-val light">${asset.dept || '—'}</div>
+              </div>
+            </div>
+            <div class="info-card full">
+              <div class="info-key">Lokasi Fisik</div>
+              <div class="info-val light">${asset.location || '—'}</div>
+            </div>
+            <div class="info-row">
+              <div class="info-card">
+                <div class="info-key">Tanggal Perolehan</div>
+                <div class="info-val light">${formatDate(asset.date)}</div>
+              </div>
+              <div class="info-card">
+                <div class="info-key">Status Kondisi</div>
+                <div class="info-val">
+                  <span class="status-badge ${sc}">${asset.status}</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
+
       </div>
 
+      <!-- DESCRIPTION -->
       <div class="desc-card">
         <div class="section-label">Deskripsi Aset</div>
         <div class="desc-divider"></div>
@@ -386,16 +373,15 @@ function renderDetail(asset) {
   `;
 
   anime.timeline({ easing: 'easeOutExpo' })
-    .add({ targets: 'body', opacity:[0,1], duration:300 })
-    .add({ targets: 'nav', translateY:[-8,0], opacity:[0,1], duration:500 }, 50)
-    .add({ targets: '.hero-wrap', opacity:[0,1], duration:700 }, 100)
-    .add({ targets: '.hero-no', translateY:[10,0], opacity:[0,1], duration:400 }, 300)
-    .add({ targets: '.hero-title', translateY:[20,0], opacity:[0,1], duration:600 }, 380)
-    .add({ targets: '.hero-row', translateY:[8,0], opacity:[0,1], duration:400 }, 520)
-    .add({ targets: '.section-label', opacity:[0,1], duration:300 }, 650)
-    .add({ targets: '.info-card', translateY:[12,0], opacity:[0,1], delay:anime.stagger(60), duration:400 }, 700)
-    .add({ targets: '.desc-card', translateY:[10,0], opacity:[0,1], duration:400 }, 880)
-    .add({ targets: '.back-footer', opacity:[0,1], duration:300 }, 1000);
+    .add({ targets: 'body',        opacity:[0,1],              duration:300 })
+    .add({ targets: 'nav',         translateY:[-8,0], opacity:[0,1], duration:500 }, 50)
+    .add({ targets: '.img-box',    scale:[.96,1], opacity:[0,1], duration:700 }, 120)
+    .add({ targets: '.asset-no',   translateY:[8,0], opacity:[0,1], duration:400 }, 280)
+    .add({ targets: '.asset-title',translateY:[16,0],opacity:[0,1], duration:600 }, 340)
+    .add({ targets: '.tag-row',    translateY:[8,0], opacity:[0,1], duration:400 }, 460)
+    .add({ targets: '.info-card',  translateY:[10,0],opacity:[0,1], delay:anime.stagger(55), duration:400 }, 520)
+    .add({ targets: '.desc-card',  translateY:[8,0], opacity:[0,1], duration:400 }, 750)
+    .add({ targets: '.back-footer',opacity:[0,1],              duration:300 }, 900);
 }
 
 function renderNotFound(id) {
